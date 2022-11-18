@@ -7,36 +7,51 @@ using System.Threading.Tasks;
 namespace Ejercicio03
 {
     internal class IRepositorioUsuarios
+
     {
-      
+        Dictionary<string, Usuario> RepoUsuarios = new();  
+        
         //Metodos
         internal void Agregar(Usuario pUsuario)
         {
-
-            array[count] = pBanca;
-            count++;
-
+            try
+            {
+                RepoUsuarios.Add(pUsuario.Codigo, pUsuario);
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("Ya existe un elemento con la clave = \"Codigo\".");
+            }
         }
 
         internal void Actualizar(Usuario pUsuario)
         {
-
-            array[count] = pBanca;
-            count++;
-
+            try
+            {
+                RepoUsuarios[pUsuario.Codigo] = pUsuario;
+            }
+            catch (KeyNotFoundException)
+            {
+                Console.WriteLine("La clave = \"Codigo\" no existe)");
+            }
         }
 
         internal void Eliminar(string pCodigo)
         {
-
-            array[count] = pBanca;
-            count++;
+            try
+            {
+                RepoUsuarios.Remove(pCodigo);
+            }
+            catch (KeyNotFoundException)
+            {
+                Console.WriteLine("La clave = \"pCodigo\" no existe)");
+            }
 
         }
 
-        internal IList<Usuario> ObtenerTodos() 
+        internal List<Usuario> ObtenerTodos() 
         {
-            return ;
+            return RepoUsuarios.Values.ToList<Usuario>;
         }
         
         internal Usuario ObtenerPorCodigo(string pCodigo)
