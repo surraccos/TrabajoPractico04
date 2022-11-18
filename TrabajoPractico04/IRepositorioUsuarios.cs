@@ -51,7 +51,7 @@ namespace Ejercicio03
 
         internal List<Usuario> ObtenerTodos() 
         {
-            return RepoUsuarios.Values.ToList<Usuario>;
+            return RepoUsuarios.Values.ToList<Usuario>; //Viendo cómo implementar esto de hacer una lista con los valores
         }
         
         internal Usuario ObtenerPorCodigo(string pCodigo)
