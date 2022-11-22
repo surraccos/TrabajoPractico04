@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,20 +52,19 @@ namespace Ejercicio03
 
         internal List<Usuario> ObtenerTodos() 
         {
-            return RepoUsuarios.Values.ToList<Usuario>; //Viendo cómo implementar esto de hacer una lista con los valores
+            return RepoUsuarios.Values.ToList();
         }
         
         internal Usuario ObtenerPorCodigo(string pCodigo)
         {
-            return;
+            return RepoUsuarios[pCodigo];
         }
-
 
         //Implementar 3 de estos
-        internal IList<Usuario> ObtenerOrdenadosPor(IComparer<Usuario> pComparador)
-        {
-            return;
-        }
+        //internal IList<Usuario> ObtenerOrdenadosPor(IComparer<Usuario> pComparador)
+        //{
+        //    return;
+        //}
 
     }
 }
