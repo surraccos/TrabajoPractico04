@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,15 +38,17 @@ namespace Ejercicio03
             }
         }
 
-        internal void Eliminar(string pCodigo)
+        internal bool Eliminar(string pCodigo)
         {
             try
             {
                 RepoUsuarios.Remove(pCodigo);
+                return true;
             }
             catch (KeyNotFoundException)
             {
                 Console.WriteLine("La clave = \"pCodigo\" no existe)");
+                return false;
             }
 
         }
@@ -57,14 +60,26 @@ namespace Ejercicio03
         
         internal Usuario ObtenerPorCodigo(string pCodigo)
         {
-            return RepoUsuarios[pCodigo];
+            Usuario user = new();
+            try
+            {
+                user = RepoUsuarios[pCodigo];
+            }
+            catch(KeyNotFoundException)
+            {
+                Console.WriteLine("No se encontró la clave especificada");
+                
+            }
+            return user;
         }
 
+
         //Implementar 3 de estos
-        //internal IList<Usuario> ObtenerOrdenadosPor(IComparer<Usuario> pComparador)
-        //{
-        //    return;
-        //}
+        internal IList<Usuario> ObtenerOrdenadosPor(IComparer<Usuario> pComparador)
+        {
+            IList<Usuario> lista = RepoUsuarios.Values.ToList();
+            return lista.ToImmutableSortedSet<Usuario>(pComparador);
+        }
 
     }
 }
